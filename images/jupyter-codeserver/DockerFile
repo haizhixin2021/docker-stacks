@@ -1,5 +1,6 @@
 FROM jupyter/scipy-notebook
 ARG CODE_RELEASE
+ARG DEBIAN_FRONTEND="noninteractive"
 
 USER root
 ENV HOME="/config"
@@ -14,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     echo "**** install code-server ****" && \
     mkdir -p /app/code-server && \
     if [ -z ${CODE_RELEASE+x} ]; then \
-        CODE_RELEASE=111.11.1 \
+        echo "**** test xxx ****" && \
     fi
 
 
