@@ -39,19 +39,7 @@ RUN \
     CODE_RELEASE=$(curl -sX GET https://api.github.com/repos/coder/code-server/releases/latest \
       | awk '/tag_name/{print $4;exit}' FS='[""]' | sed 's|^v||'); \
   fi && \
-  mkdir -p /app/code-server && \
-  curl -o \
-    /tmp/code-server.tar.gz -L \
-    "https://github.com/coder/code-server/releases/download/v${CODE_RELEASE}/code-server-${CODE_RELEASE}-linux-arm64.tar.gz" && \
-  tar xf /tmp/code-server.tar.gz -C \
-    /app/code-server --strip-components=1 && \
-  echo "**** clean up ****" && \
-  apt-get clean && \
-  rm -rf \
-    /config/* \
-    /tmp/* \
-    /var/lib/apt/lists/* \
-    /var/tmp/*
+  
 
 # add local files
 #COPY /root /
