@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y \
 RUN curl -o /tmp/code-server.tar.gz -L "https://github.com/coder/code-server/releases/download/v4.90.3/code-server-4.90.3-linux-arm64.tar.gz"
 RUN tar xf /tmp/code-server.tar.gz -C /app/code-server --strip-components=1
 
+RUN rm -rf /config/* /tmp/* /var/lib/apt/lists/* /var/tmp/*
+
 #RUN curl -fsSL https://code-server.dev/install.sh | sh
 
 # 暴露端口
@@ -33,5 +35,8 @@ USER root
 
 RUN chmod +x /usr/local/bin/startcode-server.sh
 USER $NB_UID
+
+# add local files
+COPY ./images/jupyter-codeserver/root /
 
 CMD ["/usr/local/bin/startcode-server.sh"]
