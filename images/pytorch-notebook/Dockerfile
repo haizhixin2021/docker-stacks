@@ -21,6 +21,7 @@ RUN pip install --no-cache-dir --index-url 'https://download.pytorch.org/whl/cpu
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
+USER root
 # install code-server
 RUN \
   echo "**** install runtime dependencies ****" && \
@@ -46,11 +47,11 @@ RUN \
     /app/code-server --strip-components=1 && \
   echo "**** clean up ****" && \
   apt-get clean && \
-  #rm -rf \
-  #  /config/* \
-  #  /tmp/* \
-  #  /var/lib/apt/lists/* \
-  #  /var/tmp/*
+  rm -rf \
+    /config/* \
+    /tmp/* \
+    /var/lib/apt/lists/* \
+    /var/tmp/*
 
 # add local files
 #COPY /root /
