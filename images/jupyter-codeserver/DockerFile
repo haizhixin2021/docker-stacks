@@ -14,8 +14,7 @@ RUN apt-get update && apt-get install -y \
     echo "**** install code-server ****" && \
     mkdir -p /app/code-server && \
     if [ -z ${CODE_RELEASE+x} ]; then \
-        CODE_RELEASE=$(curl -sX GET https://api.github.com/repos/coder/code-server/releases/latest \
-          | awk '/tag_name/{print $4;exit}' FS='[""]' | sed 's|^v||'); \
+        CODE_RELEASE=111.11.1
     fi
 
 
