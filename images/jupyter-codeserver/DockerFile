@@ -11,16 +11,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     && apt-get clean \
     echo "**** install code-server ****" && \
-    if [ -z ${CODE_RELEASE+x} ]; then \
-        CODE_RELEASE=$(curl -sX GET https://api.github.com/repos/coder/code-server/releases/latest \
-          | awk '/tag_name/{print $4;exit}' FS='[""]' | sed 's|^v||'); \
-    fi && \
     mkdir -p /app/code-server && \
-    curl -o \
-        /tmp/code-server.tar.gz -L \
-        "https://github.com/coder/code-server/releases/download/v${CODE_RELEASE}/code-server-${CODE_RELEASE}-linux-amd64.tar.gz" && \
-    tar xf /tmp/code-server.tar.gz -C \
-        /app/code-server --strip-components=1 && \
 
 
 # 安装Code-Server
