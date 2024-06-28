@@ -23,8 +23,7 @@ RUN rm -rf /config/* /tmp/* /var/lib/apt/lists/* /var/tmp/*
 
 #RUN curl -fsSL https://code-server.dev/install.sh | sh
 
-# 暴露端口
-EXPOSE 8888 8080
+
 
 USER $NB_UID
 
@@ -40,3 +39,6 @@ USER $NB_UID
 COPY ./images/jupyter-codeserver/root /
 
 #CMD ["/usr/local/bin/startcode-server.sh"]
+
+# 暴露端口
+EXPOSE 8888 8080
