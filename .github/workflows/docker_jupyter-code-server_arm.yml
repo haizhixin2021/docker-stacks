@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./images/pytorch-notebook/Dockerfile
+          file: ./images/jupyter-codeserver/DockerFile
           platforms: |
             linux/arm64
           push: true
