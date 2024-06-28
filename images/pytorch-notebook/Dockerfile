@@ -53,7 +53,7 @@ RUN \
     /var/tmp/*
 
 # add local files
-COPY /root /
+#COPY /root /
 
 # ports and volumes
 EXPOSE 8443
