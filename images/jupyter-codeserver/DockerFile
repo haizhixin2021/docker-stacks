@@ -1,4 +1,4 @@
-FROM jupyter/pytorch-notebook
+FROM jupyter/scipy-notebook
 
 USER root
 ENV HOME="/config"
