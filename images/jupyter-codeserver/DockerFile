@@ -15,11 +15,10 @@ RUN apt-get update && apt-get install -y \
     echo "**** install code-server ****" && \
     mkdir -p /app/code-server
 
+# 安装Code-Server
 RUN curl -o /tmp/code-server.tar.gz -L "https://github.com/coder/code-server/releases/download/v4.90.3/code-server-4.90.3-linux-arm64.tar.gz"
 RUN tar xf /tmp/code-server.tar.gz -C /app/code-server --strip-components=1
 
-
-# 安装Code-Server
 #RUN curl -fsSL https://code-server.dev/install.sh | sh
 
 # 暴露端口
