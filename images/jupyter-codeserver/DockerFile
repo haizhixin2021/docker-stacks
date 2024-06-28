@@ -39,6 +39,7 @@ USER $NB_UID
 COPY ./images/jupyter-codeserver/root /
 
 CMD ["/usr/local/bin/startcode-server.sh"]
+CMD ["start-notebook.py"]
 
 # 暴露端口
 EXPOSE 8888 8080
