@@ -46,11 +46,11 @@ RUN \
     /app/code-server --strip-components=1 && \
   echo "**** clean up ****" && \
   apt-get clean && \
-  rm -rf \
-    /config/* \
-    /tmp/* \
-    /var/lib/apt/lists/* \
-    /var/tmp/*
+  #rm -rf \
+  #  /config/* \
+  #  /tmp/* \
+  #  /var/lib/apt/lists/* \
+  #  /var/tmp/*
 
 # add local files
 #COPY /root /
