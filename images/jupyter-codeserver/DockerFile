@@ -12,17 +12,21 @@ RUN apt-get update && apt-get install -y \
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
 # 设置SSH
-RUN mkdir /var/run/sshd
-RUN echo 'root:your_password' | chpasswd
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+#RUN mkdir /var/run/sshd
+#RUN echo 'root:your_password' | chpasswd
+#RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # 暴露端口
-EXPOSE 22 8888 8080
+EXPOSE 8888 8080
 
 USER $NB_UID
 
 # 启动脚本
 COPY ./images/jupyter-codeserver/start.sh /usr/local/bin/
+
+USER root
+
 RUN chmod +x /usr/local/bin/start.sh
+USER $NB_UID
 
 CMD ["/usr/local/bin/start.sh"]
