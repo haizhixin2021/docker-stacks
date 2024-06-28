@@ -34,13 +34,8 @@ RUN \
     net-tools \
     netcat \
     sudo && \
-  echo "**** install code-server ****" && \
-  if [ -z ${CODE_RELEASE+x} ]; then \
-    CODE_RELEASE=$(curl -sX GET https://api.github.com/repos/coder/code-server/releases/latest \
-      | awk '/tag_name/{print $4;exit}' FS='[""]' | sed 's|^v||'); \
-  fi && \
-  
 
+  
 # add local files
 #COPY /root /
 
