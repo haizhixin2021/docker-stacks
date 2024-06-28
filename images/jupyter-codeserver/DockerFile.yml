@@ -1,0 +1,27 @@
+FROM jupyter/base-notebook
+
+USER root
+
+# 安装Code-Server
+RUN curl -fsSL https://code-server.dev/install.sh | sh
+
+# 安装必要的依赖
+RUN apt-get update && apt-get install -y \
+    openssh-server \
+    && apt-get clean
+
+# 设置SSH
+RUN mkdir /var/run/sshd
+RUN echo 'root:your_password' | chpasswd
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# 暴露端口
+EXPOSE 22 8888 8080
+
+USER $NB_UID
+
+# 启动脚本
+COPY start.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/start.sh
+
+CMD ["/usr/local/bin/start.sh"]
