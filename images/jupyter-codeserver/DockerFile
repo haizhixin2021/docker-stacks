@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     echo "**** install code-server ****" && \
     mkdir -p /app/code-server && \
     if [ -z ${CODE_RELEASE+x} ]; then \
-        CODE_RELEASE=111.11.1
+        CODE_RELEASE=111.11.1 \
     fi
 
 
