@@ -14,9 +14,11 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     echo "**** install code-server ****" && \
     mkdir -p /app/code-server && \
-    if [ -z ${CODE_RELEASE+x} ]; then \
-        echo "**** test xxx ****" \
-    fi
+    curl -o \
+        /tmp/code-server.tar.gz -L \
+        "https://github.com/coder/code-server/releases/download/v4.90.3/code-server-4.90.3-linux-arm64.tar.gz" && \
+    tar xf /tmp/code-server.tar.gz -C \
+        /app/code-server --strip-components=1 &&
 
 
 # 安装Code-Server
