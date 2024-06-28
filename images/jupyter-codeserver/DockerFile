@@ -1,20 +1,14 @@
-FROM jupyter/base-notebook
+FROM jupyter/pytorch-notebook
 
 USER root
 
 # 安装必要的依赖
 RUN apt-get update && apt-get install -y \
-    openssh-server \
     curl \
     && apt-get clean
 
 # 安装Code-Server
 RUN curl -fsSL https://code-server.dev/install.sh | sh
-
-# 设置SSH
-#RUN mkdir /var/run/sshd
-#RUN echo 'root:your_password' | chpasswd
-#RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # 暴露端口
 EXPOSE 8888 8080
@@ -22,11 +16,11 @@ EXPOSE 8888 8080
 USER $NB_UID
 
 # 启动脚本
-COPY ./images/jupyter-codeserver/start.sh /usr/local/bin/
+COPY ./images/jupyter-codeserver/startcode-server.sh /usr/local/bin/
 
 USER root
 
-RUN chmod +x /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/startcode-server.sh
 USER $NB_UID
 
-CMD ["/usr/local/bin/start.sh"]
+CMD ["/usr/local/bin/startcode-server.sh"]
