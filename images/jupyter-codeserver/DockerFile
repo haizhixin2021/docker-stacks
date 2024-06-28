@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     echo "**** install code-server ****" && \
     mkdir -p /app/code-server && \
     if [ -z ${CODE_RELEASE+x} ]; then \
-        echo "**** test xxx ****" && \
+        echo "**** test xxx ****" \
     fi
 
 
