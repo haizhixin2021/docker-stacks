@@ -25,15 +25,15 @@ RUN rm -rf /config/* /tmp/* /var/lib/apt/lists/* /var/tmp/*
 
 ENV PATH=/app/code-server/bin:$PATH
 
-USER $NB_UID
+#USER $NB_UID
 
 # 启动脚本
 COPY ./images/jupyter-codeserver/startcode-server.sh /usr/local/bin/
 
-USER root
+#USER root
 
 RUN chmod +x /usr/local/bin/startcode-server.sh
-USER $NB_UID
+#USER $NB_UID
 
 # add local files
 COPY ./images/jupyter-codeserver/root /
@@ -43,3 +43,9 @@ CMD ["/usr/local/bin/startcode-server.sh"]
 
 # 暴露端口
 EXPOSE 8888 8080
+
+USER ${NB_USER}
+
+ENV HOME=/home/${NB_USER}
+
+WORKDIR ${HOME}
