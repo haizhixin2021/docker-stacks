@@ -28,7 +28,7 @@ USER $NB_UID
 COPY ./images/jupyter-codeserver/startcode-server.sh /usr/local/bin/
 
 USER root
-
+RUN alias ls='ls --color=auto'
 RUN chmod +x /usr/local/bin/startcode-server.sh
 USER $NB_UID
 
